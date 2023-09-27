@@ -25,7 +25,7 @@ You can move directly from span information to profiling data on the Code Hotspo
 
 ### Prerequisites
 
-{{< programming-lang-wrapper langs="java,python,go,ruby,dotnet,php" >}}
+{{< programming-lang-wrapper langs="java,python,go,ruby,nodejs,dotnet,php" >}}
 {{< programming-lang lang="java" >}}
 Code Hotspots identification is enabled by default when you [turn on profiling for your Java service][1]. For manually instrumented code, continuous profiler requires scope activation of spans:
 
@@ -61,6 +61,18 @@ Code Hotspots identification is enabled by default when you [turn on profiling f
 Requires `dd-trace-rb` version 0.49.0+.
 
 [1]: /profiler/enabling/ruby
+{{< /programming-lang >}}
+{{< programming-lang lang="nodejs" >}}
+
+Code Hotspots (beta) identification is NOT enabled by default when you [turn on profiling for your Node.js service][1]. Enable it by setting this additional environment variable:
+
+```shell
+export DD_PROFILING_CODEHOTSPOTS_ENABLED=true
+```
+
+Requires `dd-trace-js` version 4.8.0+ or 3.29.0+.
+
+[1]: /profiler/enabling/nodejs
 {{< /programming-lang >}}
 {{< programming-lang lang="go" >}}
 
@@ -203,7 +215,7 @@ Click the **Focus On** selector to define the scope of the data:
 
 ### Prerequisites
 
-{{< programming-lang-wrapper langs="java,python,go,ruby,dotnet,php" >}}
+{{< programming-lang-wrapper langs="java,python,go,ruby,nodejs,dotnet,php" >}}
 {{< programming-lang lang="java" >}}
 Endpoint profiling is enabled by default when you [turn on profiling for your Java service][1].
 
@@ -234,6 +246,21 @@ Endpoint profiling is enabled by default when you [turn on profiling for your Ru
 Requires `dd-trace-rb` version 0.54.0+.
 
 [1]: /profiler/enabling/ruby
+{{< /programming-lang >}}
+{{< programming-lang lang="nodejs" >}}
+
+Endpoint profiling (beta) is NOT enabled by default when you [turn on profiling for your Node.js service][1]. Enable it by setting this additional environment variables:
+
+```shell
+export DD_PROFILING_ENDPOINT_COLLECTION_ENABLED=true
+```
+
+Setting this environment variable also turns on [Code Hotspots (beta)][2] which is needed for endpoint profiling.
+
+Requires `dd-trace-js` version 4.8.0+ or 3.29.0+.
+
+[1]: /profiler/enabling/nodejs
+[2]: /profiler/connect_traces_and_profiles/?code-lang=nodejs#identify-code-hotspots-in-slow-traces
 {{< /programming-lang >}}
 {{< programming-lang lang="dotnet" >}}
 
